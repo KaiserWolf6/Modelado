@@ -31,13 +31,11 @@ public class ProxyPrinter implements Serializable, Permissions{
 	@Override
 	public void allowColorPrints() {
 		verifyPermissions = false;
-		RequestPrint request = new RequestPrint();
-		if (request == null) {
-			System.out.println("No hay solicitud de impresion a color");
+		if (!verifyPermissions) {
+			printer.printC();			
 		} else {
-			request.processRequest();
-			verifyPermissions = true;
-		}
+			System.out.println("Acceso denegado");
+		}		
 	}
 
 }
