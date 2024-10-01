@@ -14,8 +14,13 @@ public class ProxyPrinter implements Serializable, Permissions{
 		
 	}
 
+	/**
+	 * Rechaza la solicitud en caso de que no cumpla con lo que se requiere para la impresion
+	 * Blanco y negro: para casi todas las areas menos mercadotecnia
+	 * Color: Para los de mercadotecnia
+	 **/ 
 	public void prayRequest() {
-		
+		printer.printBW();
 	}
 
 	/**
