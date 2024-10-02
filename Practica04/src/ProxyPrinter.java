@@ -1,5 +1,10 @@
+package src;
+
 import java.rmi.*;
 import java.rmi.server.*;
+
+import src.singleton.Print;
+
 import java.net.*;
 import java.io.*;
 import java.io.Serializable;
@@ -10,21 +15,15 @@ import java.io.Serializable;
 public class ProxyPrinter implements Serializable, Permissions {
 
 	// Atributos
-	private Print printer = Print.getInstance();
+	private Print printer;
 	private boolean verifyPermissions;
+
+	public ProxyPrinter() {
+		printer = Print.getInstance();
+	}
 
 	public void print() {
 
-	}
-
-	/**
-	 * Rechaza la solicitud en caso de que no cumpla con lo que se requiere para la
-	 * impresion
-	 * Blanco y negro: para casi todas las areas menos mercadotecnia
-	 * Color: Para los de mercadotecnia
-	 **/
-	public void prayRequest() {
-		printer.printBW();
 	}
 
 	/**

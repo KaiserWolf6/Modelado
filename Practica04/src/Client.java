@@ -1,8 +1,9 @@
+package src;
+
+import src.singleton.RequestPrint;
 
 /**
- * Cliente
- * 
- * 
+ * Client
  */
 public class Client {
 
@@ -10,14 +11,21 @@ public class Client {
 	private String name;
 	private String rfc;
 	private String area;
-	private int piso;
+	private int floor;
 
 	// Constructor
-	public Client(String name, String rfc, String area, int piso) {
+	public Client(String name, String rfc, String area, int floor) {
 		this.name = name;
 		this.rfc = rfc;
 		this.area = area;
-		this.piso = piso;
+		this.floor = floor;
+	}
+
+	/**
+	 * 
+	 */
+	public void requestPrinting(String impression) {
+		
 	}
 
 	// Setters
@@ -33,8 +41,8 @@ public class Client {
 		this.rfc = rfc;
 	}
 
-	public void setPiso(int piso) {
-		this.piso = piso;
+	public void setPiso(int floor) {
+		this.floor = floor;
 	}
 
 	// Getters
@@ -50,12 +58,13 @@ public class Client {
 		return area;
 	}
 
-	public int getPiso() {
-		return piso;
+	public int getFloor() {
+		return floor;
 	}
 
-	public void requestPrinting(String request) {
-		System.out.println("El empleado " + name + " " + " del area: " + area + " quiere imprimir");
+	@Override
+	public String toString() {
+		return "Empleado: " + this.name + "\nRFC: " + this.rfc + "\nArea: " + this.area + "\nPiso: " + this.floor;
 	}
 
 }
