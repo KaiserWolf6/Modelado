@@ -4,8 +4,14 @@
  */
 public class Print {
 
+	/*Constructor privado de la clase Print que es instance*/	
 	private static Print instance;
 
+	/**
+	 * Obtenemos la unica instancia de la clase Print que es nuestra impresora
+	 * Si no hay una instancia, se crea una nueva, en caso que ya exista, simplemente la llamamos
+	 * @return regresa la instancia unica de Print
+	 **/ 
 	public static Print getInstance() {
 		if (instance == null) {
 			instance = new Print();
