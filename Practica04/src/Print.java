@@ -1,5 +1,9 @@
-public class Print  {
-	
+
+/**
+ * Print
+ */
+public class Print {
+
 	private static Print instance;
 
 	public static Print getInstance() {
@@ -11,7 +15,7 @@ public class Print  {
 
 	/**
 	 * Imprime a blanco y negro el documento
-	 **/ 
+	 **/
 	public void printBW() {
 		RequestPrint rp = new RequestPrint();
 		rp.processRequest();
@@ -20,7 +24,7 @@ public class Print  {
 
 	/**
 	 * Imprime a color el documento
-	 **/ 
+	 **/
 	public void printC() {
 		RequestPrint rp = new RequestPrint();
 		rp.processRequest();

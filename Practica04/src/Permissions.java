@@ -1,5 +1,9 @@
-public interface Permissions  {
-	
+
+/**
+ * Permissions
+ */
+public interface Permissions {
+
 	public void allowColorPrints();
 
 }

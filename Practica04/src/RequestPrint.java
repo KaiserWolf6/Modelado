@@ -1,17 +1,22 @@
+
+/**
+ * Request Print
+ */
 public class RequestPrint {
-	
-	private Cliente cliente;
-	/*Tipo de impresion que se requiere*/
+
+	private Client cliente;
+	/* Tipo de impresion que se requiere */
 	private String typePrint;
 
 	public RequestPrint() {
-		this.cliente = new Cliente();
+		this.cliente = new Client();
 		this.typePrint = "";
 	}
 
 	/**
-	 * Procesa la solicitud del cliente que pidio una impresion recopilando toda la informacion
-	 **/ 
+	 * Procesa la solicitud del cliente que pidio una impresion recopilando toda la
+	 * informacion
+	 **/
 	public void processRequest() {
 		cliente.requestPrinting();
 		if (typePrint == null) {
@@ -34,6 +39,5 @@ public class RequestPrint {
 			System.out.println("No se puede proceder la solicitud de impresion");
 		}
 	}
-
 
 }
