@@ -12,16 +12,20 @@ import java.io.Serializable;
  */
 public class ProxyPrinter implements Serializable, Permissions {
 
-	// Atributos
+	/*Es la impresora unica*/
 	private Print printer;
+	/*Nos permitira verificar si se tiene los permisos para hacer una impresion a color*/
 	private boolean verifyPermissions;
+	/*Archivo que se va a imprimir*/
+	private String archivo;
 
+	/*Constructor de la clase ProxyPrinter*/
 	public ProxyPrinter() {
 		printer = Print.getInstance();
 	}
 
 	public void print() {
-
+		allowColorPrints();		
 	}
 
 	/**
@@ -34,9 +38,9 @@ public class ProxyPrinter implements Serializable, Permissions {
 	public void allowColorPrints() {
 		verifyPermissions = false;
 		if (!verifyPermissions) {
-			printer.printC();
+			printer.printC(archivo);
 		} else {
-			System.out.println("Acceso denegado");
+			printer.printBW(archivo);
 		}
 	}
 
