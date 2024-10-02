@@ -1,9 +1,10 @@
+package src;
 
 /**
  * Permissions
  */
 public interface Permissions {
 
-	public void allowColorPrints();
+	void allowColorPrints();
 
 }
