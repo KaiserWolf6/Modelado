@@ -43,6 +43,17 @@ public class Server<T extends Serializable> {
 
 	}
 
+	public void send(T obj) {
+		synchronized (this) {
+			try {
+				out.writeObject(obj);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@SuppressWarnings("unchecked")
 	public T receiveRequest() {
 
 		T value = null;

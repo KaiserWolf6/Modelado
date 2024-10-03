@@ -2,6 +2,11 @@ package src.ui;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
+import src.Client;
+import src.Server;
+import src.ProxyPrinter;
+import java.net.UnknownHostException;
 
 /**
  * Simulation E
@@ -13,20 +18,18 @@ public class SimulationE {
      * StartServer
      */
     public static void startServer() {
-    	System.out.println("Iniciando el servidor...");
-    	
-
-    	try {
-    		ServerSocket server = new ServerSocket(8080);
-    		while (true) {
-    			Socket s = server.accept();
-    			RemoteMesaggePassing rmp = new RemoteMesaggePassing(s);
-    			ProxyPrinter printer = (ProxyPrinter)rmp.receive();
-    			rmp.close();
-    		}
-    	} catch(IOException e) {
-    		e.printStackTrace()
-    	}
+        System.out.println("Iniciando el servidor...");
+        try {
+            ServerSocket server = new ServerSocket(8080);
+            while (true) {
+                Socket s = server.accept();
+                Server rmp = new Server(s);
+                ProxyPrinter printer = (ProxyPrinter) rmp.receiveRequest();
+                rmp.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -38,7 +41,7 @@ public class SimulationE {
         String archivo2 = "Archivo a imprimir a color";
         try {
             Socket s = new Socket("localhost", 8080);
-            RemoteMesaggePassing rmp = new RemoteMesaggePassing(s);
+            Server rmp = new Server(s);
             Client c = new Client("Samuel", "SBKBKDGDK0886", "Mercadotecnia", 4);
             Client r = new Client("Rodrigo", "RDHBVHNON07656", "Desarrollo", 4);
             c.requestPrinting(archivo2);
