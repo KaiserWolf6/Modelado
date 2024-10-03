@@ -14,12 +14,20 @@ import java.net.UnknownHostException;
  */
 public class SimulationE {
 
+	public static void main(String[] args) {
+		if ("server".equals(args[0])) {
+			startServer();
+		} else if ("client".equals(args[0])) {
+			startClient();
+		}
+	}
+
 	/**
 	 * Inicializa el server para administrar las solicitudes
 	 */
 	public static void startServer() {
 		System.out.println("Iniciando el servidor...");
-
+		String archivo = "Soy un archivo";
 		try {
 			ServerSocket server = new ServerSocket(8080);
 			while (true) {
@@ -29,6 +37,8 @@ public class SimulationE {
 				System.out.println("Verificando el tipo de impresion");
 				printer.allowColorPrints();
 				System.out.print("Impresion verificada");
+				rmp.send(archivo);
+				System.out.println("Se ha enviado");
 				rmp.close();
 			}
 		} catch (IOException e) {
@@ -52,7 +62,7 @@ public class SimulationE {
 			c.requestPrinting(archivo2);
 			c.requestPrinting(archivo);
 			System.out.println("Los empleados solicitaron una impresion");
-			ProxyPrinter printer = new ProxyPrinter(archivo);
+			ProxyPrinter printer = new ProxyPrinter();
 			System.out.println("Enviando la solicitud al servidor");
 			printer.print();
 			rmp.close();
@@ -60,14 +70,6 @@ public class SimulationE {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-	}
-
-	public static void main(String[] args) {
-		if ("server".equals(args[0])) {
-			startServer();
-		} else if ("client".equals(args[0])) {
-			startClient();
 		}
 	}
 
