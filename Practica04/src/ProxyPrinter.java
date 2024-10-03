@@ -23,8 +23,9 @@ public class ProxyPrinter implements Serializable, Permissions {
 	private String archivo;
 
 	/* Constructor de la clase ProxyPrinter */
-	public ProxyPrinter() {
+	public ProxyPrinter(String archivo) {
 		printer = Print.getInstance();
+		this.archivo = archivo;
 	}
 
 	public void print() {

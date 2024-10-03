@@ -58,7 +58,7 @@ public class Server<T extends Serializable> {
 
 		T value = null;
 
-		synchronized (receiving) {
+		synchronized (this) {
 
 			try {
 				value = (T) in.readObject();
