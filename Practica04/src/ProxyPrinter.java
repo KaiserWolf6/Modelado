@@ -20,8 +20,8 @@ public class ProxyPrinter implements Serializable, Permissions {
 		printer = Print.getInstance();
 	}
 
-	public void print() {
-
+	public void print(String d) {
+		printer.printC(d);
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class ProxyPrinter implements Serializable, Permissions {
 	public void allowColorPrints() {
 		verifyPermissions = false;
 		if (!verifyPermissions) {
-			printer.printC();
+			printer.printC("S");
 		} else {
 			System.out.println("Acceso denegado");
 		}

@@ -1,7 +1,5 @@
 package src;
 
-import src.singleton.RequestPrint;
-
 /**
  * Client
  */
