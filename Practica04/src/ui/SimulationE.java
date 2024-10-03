@@ -14,26 +14,35 @@ import java.net.UnknownHostException;
  */
 public class SimulationE {
 
+    public static void main(String[] args) {
+        if ("server".equals(args[0])) {
+            startServer();
+        } else if("client".equals(args[0])){
+            startClient();
+        }       
+    }
+
     /**
      * Inicializa el server para administrar las solicitudes
      */
-    public void startServer() {
+    public static void startServer() {
     	System.out.println("Iniciando el servidor...");
-    	
-
+    	String archivo = "Soy un archivo";
     	try {
     		ServerSocket server = new ServerSocket(8080);
     		while (true) {
     			Socket s = server.accept();
-    			RemoteMesaggePassing rmp = new RemoteMesaggePassing(s);
-    			ProxyPrinter printer = (ProxyPrinter)rmp.receive();
+    			Server rmp = new Server(s);
+    			ProxyPrinter printer = (ProxyPrinter)rmp.receiveRequest();
     			System.out.println("Verificando el tipo de impresion");
     			printer.allowColorPrints();
-    			System.out.print("Impresion verificada");		
+    			System.out.print("Impresion verificada");
+                rmp.send(archivo);
+                System.out.println("Se ha enviado");		
     			rmp.close();
     		}
     	} catch(IOException e) {
-    		e.printStackTrace()
+    		e.printStackTrace();
     	}
 
     }
@@ -41,13 +50,13 @@ public class SimulationE {
     /**
      * Da inicio a la solicitud de impresion al cliente
      */
-    public void startClient() {
+    public static void startClient() {
     	System.out.println("Cliente que solicita la impresion");
     	String archivo = "Archivo a imprimir";
     	String archivo2 = "Archivo a imprimir a color";
     	try {
     		Socket s = new Socket("localhost", 8080);
-    		RemoteMesaggePassing rmp = new RemoteMesaggePassing(s);
+    		Server rmp = new Server(s);
     		Client c = new Client("Samuel", "SBKBKDGDK0886","Mercadotecnia", 4);
     		Client r = new Client("Rodrigo", "RDHBVHNON07656", "Desarrollo", 4);
     		c.requestPrinting(archivo2);
@@ -62,14 +71,6 @@ public class SimulationE {
     	} catch(IOException e) {
     		e.printStackTrace();
     	}
-    }
-
-    public static void main(String[] args) {
-        if ("server".equals(args[0])) {
-            startServer();
-        } else if("client".equals(args[0])){
-            startClient();
-        }    	
     }
 
 }
